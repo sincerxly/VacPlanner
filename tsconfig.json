@@ -1,7 +1,10 @@
 {
-  "files": [],
-  "references": [
-    { "path": "./tsconfig.app.json" },
-    { "path": "./tsconfig.node.json" }
-  ]
+  "compilerOptions": {
+    "target": "es5",
+    "jsx": "react",
+    "module": "commonjs",
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "esModuleInterop": true
+  }
 }
