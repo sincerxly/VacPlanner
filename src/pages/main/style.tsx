@@ -29,22 +29,6 @@ export const MainContainer = styled(Box)`
   flex-direction: column;
 `;
 
-export const Header = styled(Box)`
-  flex-direction: column;
-  width: 367px;
-  height: 75px;
-`;
-
-export const Logo = styled.img`
-  height: 50px;
-`;
-
-export const LogoText = styled.div`
-  font-size: 20px;
-  font-family: "WandohopeR";
-  font-weight: bold;
-`;
-
 export const Content = styled.div`
   width: 400px;
   height: 400px;
@@ -69,5 +53,31 @@ export const Button = styled(Box)`
   color: white;
   border-radius: 5px;
   font-weight: 500;
+  cursor: pointer;
+`;
+
+export const InputContainer = styled.div`
+  width: 300px;
+  height: 35px;
+`;
+
+export const InputName = styled.input`
+  border: 1px solid #eeeeee;
+  border-radius: 5px;
+  font-size: 12px;
+  width: 100%;
+  height: inherit;
+  padding-left: 10px;
+  &::placeholder {
+    color: #bfbfbf;
+  }
+`;
+
+export const Cancel = styled.img`
+  width: 10px;
+  height: 10px;
+  position: relative;
+  left: 90%;
+  bottom: 67%;
   cursor: pointer;
 `;
