@@ -5,6 +5,9 @@
     "module": "commonjs",
     "noImplicitAny": true,
     "strictNullChecks": true,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "allowImportingTsExtensions": true,
+    "noEmit": true,
+    "allowJs": true
   }
 }

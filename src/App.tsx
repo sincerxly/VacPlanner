@@ -1,9 +1,14 @@
 import React from "react";
-import { useState } from "react";
-import "./App.css";
+import Home from "./pages/main";
+import GlobalStyle from "./GlobalStyle";
 
 function App() {
-  return <div>안녕하세요</div>;
+  return (
+    <>
+      <GlobalStyle />
+      <Home />
+    </>
+  );
 }
 
 export default App;
