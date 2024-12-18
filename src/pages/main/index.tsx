@@ -1,17 +1,20 @@
 import React, { useState } from "react";
 import * as S from "./style";
 import Header from "./elements/header";
-import Footer from "./elements/footer/notSet";
+import SetFooter from "./elements/footer/set";
+import NotSetFooter from "./elements/footer/notSet";
 import SideBar from "./elements/sideBar";
 
 const Home = () => {
   const [name, setName] = useState<string>("");
   const [isButton, setIsButton] = useState<boolean>(true);
+  const [isConfirm, setIsConfirm] = useState<boolean>(false);
   const footervalue = {
     name,
     isButton,
     setName,
     setIsButton,
+    setIsConfirm,
   };
 
   return (
@@ -23,7 +26,11 @@ const Home = () => {
         <S.Content>
           <S.Table>테이블이 비었어요!</S.Table>
         </S.Content>
-        <Footer footerValue={footervalue} />
+        {isConfirm ? (
+          <SetFooter footerValue={footervalue} />
+        ) : (
+          <NotSetFooter footerValue={footervalue} />
+        )}
       </S.MainContainer>
     </S.Container>
   );

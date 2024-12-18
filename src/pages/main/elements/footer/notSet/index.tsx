@@ -7,11 +7,12 @@ interface FooterProps {
     isButton: boolean;
     setName: (name: string) => void;
     setIsButton: React.Dispatch<React.SetStateAction<boolean>>;
+    setIsConfirm: React.Dispatch<React.SetStateAction<boolean>>;
   };
 }
 
-const Footer: React.FC<FooterProps> = ({ footerValue }) => {
-  const { name, isButton, setName, setIsButton } = footerValue;
+const NotSetFooter: React.FC<FooterProps> = ({ footerValue }) => {
+  const { name, isButton, setName, setIsButton, setIsConfirm } = footerValue;
 
   const handleClear = () => {
     setName("");
@@ -34,7 +35,7 @@ const Footer: React.FC<FooterProps> = ({ footerValue }) => {
             onKeyDown={(e) => {
               if (e.key === "Enter") {
                 setIsButton(true);
-                setName("");
+                setIsConfirm(true);
               }
             }}
           />
@@ -45,4 +46,4 @@ const Footer: React.FC<FooterProps> = ({ footerValue }) => {
   );
 };
 
-export default Footer;
+export default NotSetFooter;
