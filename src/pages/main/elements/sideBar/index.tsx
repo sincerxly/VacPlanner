@@ -5,16 +5,15 @@ const SideBar = () => {
   const [isClose, setIsClose] = useState<boolean>(false);
 
   return (
-    <S.Container style={isClose ? { width: "20px" } : { width: "247px" }}>
+    <S.Container isClose={isClose}>
       <S.Push
         src="/images/push.svg"
         onClick={() => setIsClose((prev) => !prev)}
-        style={
-          isClose
-            ? { transform: "rotate(180deg)" }
-            : { transform: "rotate(0deg)" }
-        }
+        isClose={isClose}
       />
+      <S.FuncWrapper>
+        <S.FuncContainer></S.FuncContainer>
+      </S.FuncWrapper>
     </S.Container>
   );
 };

@@ -17,9 +17,9 @@ const Home = () => {
   return (
     <S.Container>
       <S.Sign src="/images/sign.svg" />
+      <SideBar />
       <S.MainContainer>
         <Header />
-        <SideBar />
         <S.Content>
           <S.Table>테이블이 비었어요!</S.Table>
         </S.Content>
