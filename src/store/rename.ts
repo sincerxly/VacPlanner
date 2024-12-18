@@ -6,6 +6,7 @@ interface RenameState {
 }
 
 export const useRename = create<RenameState>((set) => ({
+  name: "",
   rename(newName: string) {
     set(() => ({ name: newName }));
   },

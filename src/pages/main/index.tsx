@@ -4,14 +4,14 @@ import Header from "./elements/header";
 import SetFooter from "./elements/footer/set";
 import NotSetFooter from "./elements/footer/notSet";
 import SideBar from "./elements/sideBar";
+import { useChangeState } from "../../store/plannerState";
 
 const Home = () => {
   const [isButton, setIsButton] = useState<boolean>(true);
-  const [isConfirm, setIsConfirm] = useState<boolean>(false);
+  const { isConfirm } = useChangeState();
   const footervalue = {
     isButton,
     setIsButton,
-    setIsConfirm,
   };
 
   return (

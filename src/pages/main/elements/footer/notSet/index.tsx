@@ -1,18 +1,19 @@
 import React from "react";
 import * as S from "./style";
 import { useRename } from "../../../../../store/rename";
+import { useChangeState } from "../../../../../store/plannerState";
 
 interface FooterProps {
   footerValue: {
     isButton: boolean;
     setIsButton: React.Dispatch<React.SetStateAction<boolean>>;
-    setIsConfirm: React.Dispatch<React.SetStateAction<boolean>>;
   };
 }
 
 const NotSetFooter: React.FC<FooterProps> = ({ footerValue }) => {
-  const { isButton, setIsButton, setIsConfirm } = footerValue;
+  const { isButton, setIsButton } = footerValue;
   const { name, rename } = useRename();
+  const { changeConfirm } = useChangeState();
 
   const handleClear = () => {
     rename("");
@@ -35,7 +36,7 @@ const NotSetFooter: React.FC<FooterProps> = ({ footerValue }) => {
             onKeyDown={(e) => {
               if (e.key === "Enter") {
                 setIsButton(true);
-                setIsConfirm(true);
+                changeConfirm();
               }
             }}
           />
