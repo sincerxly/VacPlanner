@@ -6,13 +6,10 @@ import NotSetFooter from "./elements/footer/notSet";
 import SideBar from "./elements/sideBar";
 
 const Home = () => {
-  const [name, setName] = useState<string>("");
   const [isButton, setIsButton] = useState<boolean>(true);
   const [isConfirm, setIsConfirm] = useState<boolean>(false);
   const footervalue = {
-    name,
     isButton,
-    setName,
     setIsButton,
     setIsConfirm,
   };

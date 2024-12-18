@@ -1,21 +1,21 @@
 import React from "react";
 import * as S from "./style";
+import { useRename } from "../../../../../store/rename";
 
 interface FooterProps {
   footerValue: {
-    name: string;
     isButton: boolean;
-    setName: (name: string) => void;
     setIsButton: React.Dispatch<React.SetStateAction<boolean>>;
     setIsConfirm: React.Dispatch<React.SetStateAction<boolean>>;
   };
 }
 
 const NotSetFooter: React.FC<FooterProps> = ({ footerValue }) => {
-  const { name, isButton, setName, setIsButton, setIsConfirm } = footerValue;
+  const { isButton, setIsButton, setIsConfirm } = footerValue;
+  const { name, rename } = useRename();
 
   const handleClear = () => {
-    setName("");
+    rename("");
     setIsButton(true);
   };
 
@@ -30,7 +30,7 @@ const NotSetFooter: React.FC<FooterProps> = ({ footerValue }) => {
           <S.InputName
             placeholder="테이블 이름을 적어주세요. (입력 후 엔터)"
             maxLength={10}
-            onChange={(e) => setName(e.target.value)}
+            onChange={(e) => rename(e.target.value)}
             value={name}
             onKeyDown={(e) => {
               if (e.key === "Enter") {
