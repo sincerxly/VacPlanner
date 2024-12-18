@@ -13,8 +13,8 @@ const SideBar = () => {
         onClick={() => setIsClose((prev) => !prev)}
         isClose={isClose}
       />
-      <S.FuncWrapper>
-        <S.FuncContainer isClose={isClose}>
+      <S.FuncWrapper isClose={isClose}>
+        <S.FuncContainer>
           <S.Func>
             배경색 :
             <S.ChooseColor bgColor={bgColor}>

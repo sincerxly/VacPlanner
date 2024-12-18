@@ -25,7 +25,6 @@ export const Box = styled.div`
 export const MainContainer = styled(Box)`
   width: 400px;
   height: 608px;
-  display: Flex;
   flex-direction: column;
 `;
 
@@ -43,6 +42,7 @@ export const Table = styled(Box)`
   border: 1px solid #eeeeee;
   font-size: 24px;
   justify-content: center;
+  /* clip-path: polygon(50% 50%, 0% 100%, 100% 100%); 반원에서 일부 제거 */
 `;
 
 export const Button = styled(Box)`

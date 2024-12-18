@@ -54,19 +54,19 @@ export const Push = styled.img<PushProps>`
   transition: 0.5s;
 `;
 
-export const FuncWrapper = styled(Box)`
+export const FuncWrapper = styled(Box)<PushProps>`
   flex-direction: column;
   width: 167px;
   height: 100%;
+  display: ${(props) => (props.isClose ? "none" : {})};
+  animation: ${(props) => (props.isClose ? fadeOut : fadeIn)} 1.5s;
 `;
 
-export const FuncContainer = styled(Box)<PushProps>`
+export const FuncContainer = styled(Box)`
   flex-direction: column;
   margin-top: 40px;
   width: 167px;
   gap: 27px;
-  display: ${(props) => (props.isClose ? "none" : {})};
-  animation: ${(props) => (props.isClose ? fadeOut : fadeIn)} 1.5s;
 `;
 
 export const Func = styled(Box)`
@@ -78,9 +78,9 @@ export const Func = styled(Box)`
 export const DetailInput = styled.input`
   width: 125px;
   height: 100%;
-  padding-left: 3%;
-  border: 0px;
+  border: none;
   outline: none;
+  padding-left: 3%;
   font-size: 12px;
   border-radius: 3px;
   &::placeholder {
@@ -117,6 +117,11 @@ export const TimeWrapper = styled(Box)`
 export const TimeInput = styled.input`
   width: 125px;
   height: 24px;
+  border: none;
+  outline: none;
+  padding-left: 3%;
+  border-radius: 3px;
+  cursor: pointer;
 `;
 
 export const ImageText = styled.div`
