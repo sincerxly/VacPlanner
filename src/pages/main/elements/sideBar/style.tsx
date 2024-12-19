@@ -19,6 +19,7 @@ const fadeOut = keyframes`
 
 interface PushProps {
   isClose: boolean;
+  isConfirm?: boolean;
 }
 
 interface ColorProps {
@@ -41,7 +42,7 @@ export const Container = styled.div<PushProps>`
   box-shadow: 0px 0px 2px 0px rgb(0, 0, 0, 25%);
   transition: width 0.5s;
   transition-timing-function: ease-in-out;
-  display: flex;
+  display: ${(props) => (props.isConfirm ? "flex" : "none")};
   justify-content: center;
 `;
 
@@ -102,6 +103,9 @@ export const ColorBox = styled.input`
   border: none;
   width: 25px;
   border-radius: 100px;
+  &::selection {
+    border-radius: 5px;
+  }
 `;
 
 export const TimeFunc = styled(Func)`

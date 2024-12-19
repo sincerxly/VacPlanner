@@ -1,13 +1,16 @@
 import React, { useState } from "react";
 import * as S from "./style";
+import { useChangeState } from "../../../../store/plannerState";
+import { useSetColor } from "../../../../store/setColor";
 
 const SideBar = () => {
   const [isClose, setIsClose] = useState<boolean>(false);
-  const [bgColor, setBgColor] = useState<string>("#000000");
   const [name, setName] = useState<string>();
+  const { isConfirm } = useChangeState();
+  const { bgColor, setBgColor } = useSetColor();
 
   return (
-    <S.Container isClose={isClose}>
+    <S.Container isClose={isClose} isConfirm={isConfirm}>
       <S.Push
         src="/images/push.svg"
         onClick={() => setIsClose((prev) => !prev)}
@@ -21,6 +24,7 @@ const SideBar = () => {
               <S.ColorBox
                 type="color"
                 onChange={(e) => setBgColor(e.target.value)}
+                value={bgColor}
               />
               {bgColor}
             </S.ChooseColor>
