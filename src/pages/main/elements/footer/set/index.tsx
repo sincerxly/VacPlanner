@@ -6,6 +6,8 @@ interface FooterProps {
   footerValue: {};
 }
 
+const saveImage = () => {};
+
 const SetFooter: React.FC<FooterProps> = ({ footerValue }) => {
   const { name } = useRename();
 

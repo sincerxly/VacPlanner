@@ -46,6 +46,7 @@ export const Table = styled(Box)<BgColor>`
   border: 1px solid #eeeeee;
   justify-content: center;
   font-size: 24px;
+  color: #fdfdfd;
   /* clip-path: polygon(50% 50%, 0% 100%, 100% 100%); 반원에서 일부 제거 */
 `;
 
