@@ -60,7 +60,7 @@ export const FuncWrapper = styled(Box)<PushProps>`
   width: 167px;
   height: 100%;
   display: ${(props) => (props.isClose ? "none" : {})};
-  animation: ${(props) => (props.isClose ? fadeOut : fadeIn)} 1.5s;
+  animation: ${(props) => (props.isClose ? fadeOut : fadeIn)} 2.5s;
 `;
 
 export const FuncContainer = styled(Box)`
