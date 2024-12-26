@@ -128,6 +128,12 @@ export const TimeInput = styled.input`
   cursor: pointer;
 `;
 
+export const Poster = styled.label`
+  width: 100%;
+  height: 100%;
+  display: flex;
+`;
+
 export const ImageText = styled.div`
   width: 125px;
   cursor: pointer;

@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import * as S from "./style";
 import Header from "./elements/header";
 import SetFooter from "./elements/footer/set";

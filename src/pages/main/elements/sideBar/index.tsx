@@ -8,7 +8,17 @@ const SideBar = () => {
   const [name, setName] = useState<string>();
   const { isConfirm } = useChangeState();
   const { bgColor, setBgColor } = useSetColor();
+  const [bgImg, setBgImg] = useState<String>("");
 
+  const change: React.FC = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { files } = e.target;
+    const uploadFile = files?.[0];
+    if (uploadFile) {
+      const reader = new FileReader();
+      reader.readAsDataURL(uploadFile);
+      setBgImg(uploadFile.name);
+    }
+  };
   return (
     <S.Container isClose={isClose} isConfirm={isConfirm}>
       <S.Push
@@ -39,12 +49,23 @@ const SideBar = () => {
           <S.TimeFunc>
             시간 :
             <S.TimeWrapper>
-              <S.TimeInput type="time"></S.TimeInput>-
-              <S.TimeInput type="time"></S.TimeInput>
+              <S.TimeInput type="time" />-
+              <S.TimeInput type="time" />
             </S.TimeWrapper>
           </S.TimeFunc>
           <S.Func>
-            사진 :<S.ImageText>이미지 업로드</S.ImageText>
+            <S.Poster htmlFor="file">
+              사진 :{" "}
+              <S.ImageText>{bgImg ? `${bgImg}` : "이미지 업로드"}</S.ImageText>
+            </S.Poster>
+            <input
+              type="file"
+              name="file"
+              id="file"
+              style={{ display: "none" }}
+              onChange={change}
+              accept=".jpg, .png,"
+            />
           </S.Func>
         </S.FuncContainer>
         <S.DeleteButton>테이블 삭제</S.DeleteButton>
