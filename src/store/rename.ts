@@ -1,7 +1,7 @@
 import { create } from "zustand";
 
 interface RenameState {
-  name?: string;
+  name: string;
   rename: (newName: string) => void;
 }
 

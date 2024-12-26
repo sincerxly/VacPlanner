@@ -1,34 +1,32 @@
 import React from "react";
 import * as S from "./style";
 import { useRename } from "../../../../../store/rename";
-import html2canvas from "html2canvas";
 import { useMainContainer } from "../../../../../store/useMainContainer";
+import domtoimage from "dom-to-image";
+import { saveAs } from "file-saver";
 
 interface FooterProps {
   footerValue: {};
 }
 
-const saveAsImageHandler = () => {
-  const { mainContainerRef } = useMainContainer();
-  if (!mainContainerRef || !mainContainerRef.current) {
-    return alert("결과 저장에 실패했습니다.");
-  }
-
-  html2canvas(mainContainerRef.current)
-    .then((canvas) => {
-      const link = document.createElement("a");
-      link.href = canvas.toDataURL("image/png");
-      link.download = "maincontainer.png";
-      link.click();
-    })
-    .catch((error) => {
-      console.error("이미지 저장 실패:", error);
-      alert("이미지 저장 중 오류가 발생했습니다.");
-    });
-};
-
 const SetFooter: React.FC<FooterProps> = ({ footerValue }) => {
   const { name } = useRename();
+  const { mainContainerRef } = useMainContainer();
+
+  const saveAsImageHandler = () => {
+    if (mainContainerRef.current) {
+      domtoimage
+        .toBlob(mainContainerRef.current)
+        .then((blob) => {
+          if (blob) {
+            saveAs(blob, `${name}.png`);
+          }
+        })
+        .catch((error) => {
+          console.error("이미지 생성 중 오류 발생:", error);
+        });
+    }
+  };
 
   return (
     <S.Container>
