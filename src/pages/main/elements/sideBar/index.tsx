@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import * as S from "./style";
 import { useChangeState } from "../../../../store/plannerState";
 import { useSetColor } from "../../../../store/setColor";
@@ -10,7 +10,7 @@ const SideBar = () => {
   const { isConfirm } = useChangeState();
   const { bgColor, setBgColor } = useSetColor();
   const [bgImg, setBgImg] = useState<String>("");
-  const { selectTable, setSelectTable } = useSelectTable();
+  const { selectTable } = useSelectTable();
 
   const change: React.FC = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { files } = e.target;
@@ -21,11 +21,17 @@ const SideBar = () => {
       setBgImg(uploadFile.name);
     }
   };
+
+  const handleStopClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+  };
+
   return (
     <S.Container
       isClose={isClose}
       isConfirm={isConfirm}
       selectTable={selectTable}
+      onClick={handleStopClick}
     >
       <S.Push
         src="/images/push.svg"

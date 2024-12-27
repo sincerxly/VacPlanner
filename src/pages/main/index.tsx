@@ -33,6 +33,7 @@ const Home = () => {
   useEffect(() => {
     if (!selectTable) {
       console.log("Table 선택이 초기화되었습니다.");
+      console.log(selectTable);
     } else {
       console.log("Table이 선택되었습니다:", selectTable);
     }
