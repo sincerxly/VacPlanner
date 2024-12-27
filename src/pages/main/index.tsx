@@ -8,6 +8,7 @@ import { useChangeState } from "../../store/plannerState";
 import { useSetColor } from "../../store/setColor";
 import { useMainContainer } from "../../store/useMainContainer";
 import { useSelectTable } from "../../store/useSelectTable";
+import { TableForm } from "./elements/tableForm";
 
 const Home = () => {
   const [isButton, setIsButton] = useState<boolean>(true);
@@ -30,17 +31,9 @@ const Home = () => {
     setSelectTable(null);
   };
 
-  useEffect(() => {
-    if (!selectTable) {
-      console.log("Table 선택이 초기화되었습니다.");
-      console.log(selectTable);
-    } else {
-      console.log("Table이 선택되었습니다:", selectTable);
-    }
-  }, [selectTable]);
-
   return (
     <S.Container onClick={handleContainerClick}>
+      <TableForm />
       <S.Sign src="/images/sign.svg" />
       <SideBar />
       <S.MainContainer>

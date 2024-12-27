@@ -20,10 +20,7 @@ const fadeOut = keyframes`
 interface PushProps {
   isClose: boolean;
   isConfirm?: boolean;
-  selectTable: HTMLDivElement | null;
 }
-
-type Close = Omit<PushProps, "selectTable">;
 
 interface ColorProps {
   bgColor: string;
@@ -45,21 +42,30 @@ export const Container = styled.div<PushProps>`
   box-shadow: 0px 0px 2px 0px rgb(0, 0, 0, 25%);
   transition: width 0.5s;
   transition-timing-function: ease-in-out;
-  display: ${(props) =>
-    props.isConfirm === false || props.selectTable === null ? "none" : "flex"};
+  display: ${(props) => (props.isConfirm === false ? "none" : "flex")};
   justify-content: center;
 `;
 
-export const Push = styled.img<Close>`
+export const NotSelectedContainer = styled(Box)<PushProps>`
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  font-size: 1.4rem;
+  color: #92c5ff;
+  display: ${(props) => (props.isClose ? "none" : {})};
+  animation: ${(props) => (props.isClose ? fadeOut : fadeIn)} 2.5s;
+`;
+
+export const Push = styled.img<PushProps>`
   position: absolute;
-  top: 50%;
+  top: 49%;
   right: 0%;
   cursor: pointer;
   transform: ${(props) => (props.isClose ? "rotate(180deg)" : "rotate(0deg)")};
   transition: 0.5s;
 `;
 
-export const FuncWrapper = styled(Box)<Close>`
+export const FuncWrapper = styled(Box)<PushProps>`
   flex-direction: column;
   width: 167px;
   height: 100%;
