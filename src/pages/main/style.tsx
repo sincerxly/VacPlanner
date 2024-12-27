@@ -43,10 +43,10 @@ export const Table = styled(Box)<BgColor>`
   height: 100%;
   background-color: ${(props) => props.bgColor};
   border-radius: 50%;
-  border: 1px solid #eeeeee;
   justify-content: center;
   font-size: 24px;
   color: #fdfdfd;
+  cursor: pointer;
   /* clip-path: polygon(50% 50%, 0% 100%, 100% 100%); 반원에서 일부 제거 */
 `;
 

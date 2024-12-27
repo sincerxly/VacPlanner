@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import * as S from "./style";
 import Header from "./elements/header";
 import SetFooter from "./elements/footer/set";
@@ -7,31 +7,49 @@ import SideBar from "./elements/sideBar";
 import { useChangeState } from "../../store/plannerState";
 import { useSetColor } from "../../store/setColor";
 import { useMainContainer } from "../../store/useMainContainer";
+import { useSelectTable } from "../../store/useSelectTable";
 
 const Home = () => {
   const [isButton, setIsButton] = useState<boolean>(true);
   const { isConfirm } = useChangeState();
   const { bgColor } = useSetColor();
+  const { selectTable, setSelectTable } = useSelectTable();
+  const { mainContainerRef } = useMainContainer();
+
   const footervalue = {
     isButton,
     setIsButton,
   };
-  const { mainContainerRef, setMainContainerRef } = useMainContainer();
-  React.useEffect(() => {
-    if (!mainContainerRef.current) {
-      const newRef = React.createRef<HTMLTableElement>();
-      setMainContainerRef(newRef);
+
+  const handleTableClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    e.stopPropagation();
+    setSelectTable(e.currentTarget);
+  };
+
+  const handleContainerClick = () => {
+    setSelectTable(null);
+  };
+
+  useEffect(() => {
+    if (!selectTable) {
+      console.log("Table 선택이 초기화되었습니다.");
+    } else {
+      console.log("Table이 선택되었습니다:", selectTable);
     }
-  }, [mainContainerRef, setMainContainerRef]);
+  }, [selectTable]);
 
   return (
-    <S.Container>
+    <S.Container onClick={handleContainerClick}>
       <S.Sign src="/images/sign.svg" />
       <SideBar />
       <S.MainContainer>
         <Header />
         <S.Content>
-          <S.Table bgColor={bgColor} ref={mainContainerRef}>
+          <S.Table
+            bgColor={bgColor}
+            ref={mainContainerRef as React.RefObject<HTMLDivElement>}
+            onClick={handleTableClick}
+          >
             {isConfirm ? null : "테이블이 비었어요!"}
           </S.Table>
         </S.Content>

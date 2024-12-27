@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import * as S from "./style";
 import { useChangeState } from "../../../../store/plannerState";
 import { useSetColor } from "../../../../store/setColor";
+import { useSelectTable } from "../../../../store/useSelectTable";
 
 const SideBar = () => {
   const [isClose, setIsClose] = useState<boolean>(false);
@@ -9,6 +10,7 @@ const SideBar = () => {
   const { isConfirm } = useChangeState();
   const { bgColor, setBgColor } = useSetColor();
   const [bgImg, setBgImg] = useState<String>("");
+  const { selectTable, setSelectTable } = useSelectTable();
 
   const change: React.FC = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { files } = e.target;
@@ -20,7 +22,11 @@ const SideBar = () => {
     }
   };
   return (
-    <S.Container isClose={isClose} isConfirm={isConfirm}>
+    <S.Container
+      isClose={isClose}
+      isConfirm={isConfirm}
+      selectTable={selectTable}
+    >
       <S.Push
         src="/images/push.svg"
         onClick={() => setIsClose((prev) => !prev)}
@@ -58,11 +64,10 @@ const SideBar = () => {
               사진 :{" "}
               <S.ImageText>{bgImg ? `${bgImg}` : "이미지 업로드"}</S.ImageText>
             </S.Poster>
-            <input
+            <S.PosterInput
               type="file"
               name="file"
               id="file"
-              style={{ display: "none" }}
               onChange={change}
               accept=".jpg, .png,"
             />

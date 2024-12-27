@@ -20,7 +20,10 @@ const fadeOut = keyframes`
 interface PushProps {
   isClose: boolean;
   isConfirm?: boolean;
+  selectTable: HTMLDivElement | null;
 }
+
+type Close = Omit<PushProps, "selectTable">;
 
 interface ColorProps {
   bgColor: string;
@@ -42,11 +45,12 @@ export const Container = styled.div<PushProps>`
   box-shadow: 0px 0px 2px 0px rgb(0, 0, 0, 25%);
   transition: width 0.5s;
   transition-timing-function: ease-in-out;
-  display: ${(props) => (props.isConfirm ? "flex" : "none")};
+  display: ${(props) =>
+    props.isConfirm === false || props.selectTable === null ? "none" : "flex"};
   justify-content: center;
 `;
 
-export const Push = styled.img<PushProps>`
+export const Push = styled.img<Close>`
   position: absolute;
   top: 50%;
   right: 0%;
@@ -55,7 +59,7 @@ export const Push = styled.img<PushProps>`
   transition: 0.5s;
 `;
 
-export const FuncWrapper = styled(Box)<PushProps>`
+export const FuncWrapper = styled(Box)<Close>`
   flex-direction: column;
   width: 167px;
   height: 100%;
@@ -132,6 +136,12 @@ export const Poster = styled.label`
   width: 100%;
   height: 100%;
   display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+export const PosterInput = styled.input`
+  display: none;
 `;
 
 export const ImageText = styled.div`
