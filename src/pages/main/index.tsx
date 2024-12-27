@@ -8,7 +8,7 @@ import { useChangeState } from "../../store/plannerState";
 import { useSetColor } from "../../store/setColor";
 import { useMainContainer } from "../../store/useMainContainer";
 import { useSelectTable } from "../../store/useSelectTable";
-import { TableForm } from "./elements/tableForm";
+import { useData } from "../../store/useData";
 
 const Home = () => {
   const [isButton, setIsButton] = useState<boolean>(true);
@@ -16,6 +16,7 @@ const Home = () => {
   const { bgColor } = useSetColor();
   const { selectTable, setSelectTable } = useSelectTable();
   const { mainContainerRef } = useMainContainer();
+  const { data, setData } = useData();
 
   const footervalue = {
     isButton,
@@ -31,21 +32,28 @@ const Home = () => {
     setSelectTable(null);
   };
 
+  useEffect(() => {
+    console.log("데이터 추가됨!");
+  }, [data]);
+
   return (
     <S.Container onClick={handleContainerClick}>
-      <TableForm />
       <S.Sign src="/images/sign.svg" />
       <SideBar />
       <S.MainContainer>
         <Header />
         <S.Content>
-          <S.Table
-            bgColor={bgColor}
-            ref={mainContainerRef as React.RefObject<HTMLDivElement>}
-            onClick={handleTableClick}
-          >
-            {isConfirm ? null : "테이블이 비었어요!"}
-          </S.Table>
+          {data.map((item, index) => (
+            <S.Table
+              key={index}
+              id={item.id.toString()}
+              bgColor={item.bgColor}
+              ref={mainContainerRef as React.RefObject<HTMLDivElement>}
+              onClick={handleTableClick}
+            >
+              {isConfirm ? null : "테이블이 비었어요!"}
+            </S.Table>
+          ))}
         </S.Content>
         {isConfirm ? (
           <SetFooter footerValue={footervalue} />

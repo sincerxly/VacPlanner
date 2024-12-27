@@ -3,6 +3,8 @@ import * as S from "./style";
 import { useChangeState } from "../../../../store/plannerState";
 import { useSetColor } from "../../../../store/setColor";
 import { useSelectTable } from "../../../../store/useSelectTable";
+import { useData } from "../../../../store/useData";
+import { addForm } from "../tableForm/addForm";
 
 const SideBar = () => {
   const [isClose, setIsClose] = useState<boolean>(false);
@@ -11,8 +13,9 @@ const SideBar = () => {
   const { bgColor, setBgColor } = useSetColor();
   const [startTime, setStartTime] = useState<string>();
   const [endTime, setEndTime] = useState<string>();
-  const [bgImg, setBgImg] = useState<String>("");
+  const [bgImg, setBgImg] = useState<string>("");
   const { selectTable } = useSelectTable();
+  const { data, setData } = useData();
 
   const change: React.FC = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { files } = e.target;
@@ -96,7 +99,21 @@ const SideBar = () => {
         </S.FuncWrapper>
       ) : (
         <S.NotSelectedContainer isClose={isClose}>
-          <div style={{ cursor: "pointer" }}>테이블 추가하기</div>
+          <div
+            style={{ cursor: "pointer" }}
+            onClick={() =>
+              addForm(
+                data.length,
+                `새 테이블 ${data.length}`,
+                "#000000",
+                "",
+                startTime || "",
+                endTime || ""
+              )
+            }
+          >
+            테이블 추가하기
+          </div>
         </S.NotSelectedContainer>
       )}
     </S.Container>

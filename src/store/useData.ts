@@ -1,12 +1,20 @@
 import { create } from "zustand";
 
-interface dataForm {
-  data: object[];
-  setData: (newItem: object) => void;
+interface DataItem {
+  id: number;
+  name: string;
+  bgColor: string;
 }
 
-export const useData = create<dataForm>((set) => ({
+interface DataForm {
+  data: DataItem[];
+  setData: (newItem: DataItem) => void;
+}
+
+export const useData = create<DataForm>((set) => ({
   data: [],
-  setData: (newItem: object) =>
-    set((state) => ({ data: [...state.data, newItem] })),
+  setData: (newItem) =>
+    set((state) => ({
+      data: [...state.data, newItem],
+    })),
 }));
