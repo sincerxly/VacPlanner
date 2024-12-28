@@ -43,6 +43,10 @@ const Home = () => {
       <S.MainContainer>
         <Header />
         <S.Content>
+          <S.Table bgColor="  #92c5ff">
+            {" "}
+            {isConfirm ? null : "테이블이 비었어요!"}
+          </S.Table>
           {data.map((item, index) => (
             <S.Table
               key={index}
