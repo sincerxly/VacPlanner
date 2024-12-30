@@ -27,18 +27,17 @@ const Home = () => {
     setIsButton,
   };
 
-  const handleTableClick = (e: React.MouseEvent<HTMLDivElement>) => {
-    e.stopPropagation();
-    setSelectTable(e.currentTarget);
+  useEffect(() => {
+    console.log(selectTable);
+  }, [selectTable]);
+
+  const handleTableClick = (id: number) => {
+    setSelectTable(id);
   };
 
   const handleContainerClick = () => {
     setSelectTable(null);
   };
-
-  useEffect(() => {
-    console.log("데이터 추가됨!");
-  }, [data]);
 
   return (
     <S.Container onClick={handleContainerClick}>
@@ -54,10 +53,10 @@ const Home = () => {
           {data.map((item, index) => (
             <S.Table
               key={index}
-              id={item.id.toString()}
+              id={String(index)}
               bgColor={item.bgColor}
               ref={mainContainerRef as React.RefObject<HTMLDivElement>}
-              onClick={handleTableClick}
+              onClick={() => handleTableClick(index)}
               style={{ zIndex: `${data.length}` }}
             >
               {isConfirm ? null : "테이블이 비었어요!"}

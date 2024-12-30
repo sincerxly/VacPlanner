@@ -22,9 +22,8 @@ const SideBar = () => {
     e.stopPropagation();
   };
 
-  const handleTableClick = (e: React.MouseEvent<HTMLDivElement>) => {
-    e.stopPropagation();
-    setSelectTable(e.currentTarget);
+  const handleTableClick = (id: number) => {
+    setSelectTable(id);
   };
 
   const handleStartTime = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -68,8 +67,10 @@ const SideBar = () => {
         (selectTable === undefined && data.length > 2) ? ( // 데이터는 있는데 지금 배경 누르고 있을 때 (테이블과 테이블 추가하기 띄워줌)
         <S.FuncWrapper isClose={isClose}>
           <S.Lists>
-            {data.map((item) => (
-              <S.List onClick={handleTableClick}>{item.name}</S.List>
+            {data.map((item, index) => (
+              <S.List onClick={() => handleTableClick(index)}>
+                {item.name}
+              </S.List>
             ))}
           </S.Lists>
           <S.AddButton>테이블 추가</S.AddButton>

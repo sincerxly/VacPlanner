@@ -1,8 +1,8 @@
 import { create } from "zustand";
 
 interface SelectTableState {
-  selectTable: HTMLDivElement | null;
-  setSelectTable: (table: HTMLDivElement | null) => void;
+  selectTable: number | null;
+  setSelectTable: (table: number | null) => void;
 }
 
 export const useSelectTable = create<SelectTableState>((set) => ({
