@@ -18,6 +18,10 @@ const Home = () => {
   const { mainContainerRef } = useMainContainer();
   const { data, setData } = useData();
 
+  useEffect(() => {
+    console.log(selectTable);
+  }, [selectTable]);
+
   const footervalue = {
     isButton,
     setIsButton,

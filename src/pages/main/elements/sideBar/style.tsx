@@ -73,6 +73,24 @@ export const FuncWrapper = styled(Box)<PushProps>`
   animation: ${(props) => (props.isClose ? fadeOut : fadeIn)} 2.5s;
 `;
 
+export const List = styled(Box)`
+  width: 100%;
+  height: 100%;
+  background-color: white;
+`;
+
+export const Lists = styled(Box)`
+  margin-top: 40px;
+  gap: 10px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+  cursor: pointer;
+  width: 100%;
+  font-size: 1.4rem;
+`;
+
 export const FuncContainer = styled(Box)`
   flex-direction: column;
   margin-top: 40px;
@@ -165,4 +183,9 @@ export const DeleteButton = styled(Box)`
   margin-bottom: 40px;
   justify-content: center;
   cursor: pointer;
+`;
+
+export const AddButton = styled(DeleteButton)`
+  color: #92c5ff;
+  background-color: white;
 `;
