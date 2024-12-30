@@ -39,14 +39,15 @@ export const Content = styled.div`
 
 export const Table = styled(Box)<BgColor>`
   font-family: "WandohopeR";
-  width: 100%;
-  height: 100%;
+  width: 400px;
+  height: 400px;
   background-color: ${(props) => props.bgColor};
   border-radius: 50%;
   justify-content: center;
   font-size: 24px;
   color: #fdfdfd;
   cursor: pointer;
+  position: absolute;
   /* clip-path: polygon(50% 50%, 0% 100%, 100% 100%); 반원에서 일부 제거 */
 `;
 

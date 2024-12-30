@@ -54,6 +54,7 @@ const Home = () => {
               bgColor={item.bgColor}
               ref={mainContainerRef as React.RefObject<HTMLDivElement>}
               onClick={handleTableClick}
+              style={{ zIndex: `${data.length}` }}
             >
               {isConfirm ? null : "테이블이 비었어요!"}
             </S.Table>

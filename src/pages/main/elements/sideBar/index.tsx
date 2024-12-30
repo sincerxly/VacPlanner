@@ -4,6 +4,7 @@ import { useChangeState } from "../../../../store/plannerState";
 import { useSetColor } from "../../../../store/setColor";
 import { useSelectTable } from "../../../../store/useSelectTable";
 import useAddForm from "../tableForm/addForm";
+import { useData } from "../../../../store/useData";
 
 const SideBar = () => {
   const [isClose, setIsClose] = useState<boolean>(false);
@@ -14,6 +15,7 @@ const SideBar = () => {
   const [endTime, setEndTime] = useState<string>("");
   const [bgImg, setBgImg] = useState<string>("");
   const { selectTable } = useSelectTable();
+  const { data } = useData();
   const addForm = useAddForm();
 
   const handleStopClick = (e: React.MouseEvent) => {
@@ -37,7 +39,7 @@ const SideBar = () => {
   };
 
   const handleAddTable = () => {
-    addForm(name, bgColor, bgImg, startTime, endTime);
+    addForm(`테이블 ${data.length + 1}`, bgColor, bgImg, startTime, endTime);
   };
 
   return (
@@ -51,9 +53,9 @@ const SideBar = () => {
         onClick={() => setIsClose((prev) => !prev)}
         isClose={isClose}
       />
-      {selectTable !== null ? (
+      {selectTable !== null && data.length >= 1 ? (
         <S.FuncWrapper isClose={isClose}>
-          {/* ... 기존 코드 ... */}
+          {data.map((item) => item.name)}
         </S.FuncWrapper>
       ) : (
         <S.NotSelectedContainer isClose={isClose}>
