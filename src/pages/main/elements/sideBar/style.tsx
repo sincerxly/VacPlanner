@@ -114,7 +114,7 @@ export const DetailInput = styled.input`
   border-radius: 3px;
   &::placeholder {
     color: #bfbfbf;
-    font-size: 8px;
+    font-size: 0.4rem;
   }
 `;
 
