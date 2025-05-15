@@ -14,7 +14,6 @@ import MainTable from "../../components/main/mainTable";
 const Home = () => {
     const [isButton, setIsButton] = useState<boolean>(true);
     const { isConfirm } = useChangeState();
-    const { bgColor } = useSetColor();
     const { selectTable, setSelectTable } = useSelectTable();
     const { mainContainerRef } = useMainContainer();
     const { data, setData } = useData();

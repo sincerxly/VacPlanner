@@ -37,6 +37,7 @@ const NotSetFooter: React.FC<FooterProps> = ({ footerValue }) => {
               if (e.key === "Enter") {
                 setIsButton(true);
                 changeConfirm();
+                console.log(name)
               }
             }}
           />

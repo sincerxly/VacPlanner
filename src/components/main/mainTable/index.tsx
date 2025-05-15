@@ -1,6 +1,7 @@
 import React from "react";
 import * as S from "./style";
 import { MainTableType } from "../../../types/mainTableType";
+import { useSetColor } from "../../../store/setColor";
 
 const MainTable = ({
     isConfirm,
@@ -8,10 +9,10 @@ const MainTable = ({
     mainContainerRef,
     handleTableClick,
 }: MainTableType) => {
+    const { bgColor } = useSetColor();
     return (
         <S.Container>
-            <S.Table bgColor="  #92c5ff">
-                {" "}
+            <S.Table bgColor={bgColor}>
                 {isConfirm ? null : "테이블이 비었어요!"}
             </S.Table>
             {data.map((item: any, index: number) => (

@@ -5,10 +5,6 @@ import { saveAs } from "file-saver";
 import { useRename } from "../../../../store/rename";
 import { useMainContainer } from "../../../../store/useMainContainer";
 
-interface FooterProps {
-  footerValue: {};
-}
-
 const SetFooter = () => {
   const { name } = useRename();
   const { mainContainerRef } = useMainContainer();
