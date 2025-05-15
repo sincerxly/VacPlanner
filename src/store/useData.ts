@@ -1,6 +1,6 @@
 import { create } from "zustand";
 
-interface DataItem {
+export interface DataItem {
   id: number;
   name: string;
   bgColor: string;

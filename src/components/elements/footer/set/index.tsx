@@ -1,15 +1,15 @@
 import React from "react";
 import * as S from "./style";
-import { useRename } from "../../../../../store/rename";
-import { useMainContainer } from "../../../../../store/useMainContainer";
 import domtoimage from "dom-to-image";
 import { saveAs } from "file-saver";
+import { useRename } from "../../../../store/rename";
+import { useMainContainer } from "../../../../store/useMainContainer";
 
 interface FooterProps {
   footerValue: {};
 }
 
-const SetFooter: React.FC<FooterProps> = ({ footerValue }) => {
+const SetFooter = () => {
   const { name } = useRename();
   const { mainContainerRef } = useMainContainer();
 

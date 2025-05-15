@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import * as S from "./style";
-import { useChangeState } from "../../../../store/plannerState";
-import { useSetColor } from "../../../../store/setColor";
-import { useSelectTable } from "../../../../store/useSelectTable";
 import useAddForm from "../tableForm/addForm";
-import { useData } from "../../../../store/useData";
+import { useData } from "../../../store/useData";
+import { useSelectTable } from "../../../store/useSelectTable";
+import { useSetColor } from "../../../store/setColor";
+import { useChangeState } from "../../../store/plannerState";
 
 const SideBar = () => {
   const [isClose, setIsClose] = useState<boolean>(false);
@@ -47,16 +47,8 @@ const SideBar = () => {
   };
 
   return (
-    <S.Container
-      isClose={isClose}
-      isConfirm={isConfirm}
-      onClick={handleStopClick}
-    >
-      <S.Push
-        src="/images/push.svg"
-        onClick={() => setIsClose((prev) => !prev)}
-        isClose={isClose}
-      />
+    <S.Container isClose={isClose} isConfirm={isConfirm} onClick={handleStopClick}>
+      <S.Push src="/images/push.svg" onClick={() => setIsClose((prev) => !prev)} isClose={isClose}/>
       {data.length < 2 ? ( // 데이터가 하나도 없을 때
         <S.NotSelectedContainer isClose={isClose}>
           <div style={{ cursor: "pointer" }} onClick={handleAddTable}>

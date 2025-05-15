@@ -1,7 +1,7 @@
 import React from "react";
 import * as S from "./style";
-import { useRename } from "../../../../../store/rename";
-import { useChangeState } from "../../../../../store/plannerState";
+import { useRename } from "../../../../store/rename";
+import { useChangeState } from "../../../../store/plannerState";
 
 interface FooterProps {
   footerValue: {
