@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import * as S from "./style";
 import { useChangeState } from "../../store/plannerState";
-import { useSetColor } from "../../store/setColor";
 import { useMainContainer } from "../../store/useMainContainer";
 import { useSelectTable } from "../../store/useSelectTable";
 import { useData } from "../../store/useData";

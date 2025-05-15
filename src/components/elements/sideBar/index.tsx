@@ -7,22 +7,36 @@ import { useTableHook } from "../../../hooks/useTableHook";
 
 const SideBar = () => {
     const { isConfirm } = useChangeState();
-    const {handleChangeBgColor, handleDeleteTable, handleChangeName, handleTableClick, handleStopClick, handleAddTable, handleClose, handleStartTime, handleEndTime, 
-        setName, startTime, endTime, name, isClose, bgImg, setBgImg, bgColor, setBgColor,} = useTableHook();
+    const {
+        handleChangeBgImg,
+        handleChangeBgColor,
+        handleDeleteTable,
+        handleChangeName,
+        handleTableClick,
+        handleStopClick,
+        handleAddTable,
+        handleClose,
+        handleStartTime,
+        handleEndTime,
+        setName,
+        startTime,
+        endTime,
+        name,
+        isClose,
+        bgImg,
+        setBgImg,
+        bgColor,
+        setBgColor,
+    } = useTableHook();
     const { selectTable } = useSelectTable();
     const { data } = useData();
 
-
-    const handleChangeFile = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const { files } = e.target;
-        const uploadFile = files?.[0];
-        if (uploadFile) {
-            setBgImg(uploadFile.name);
-        }
-    };
-
     return (
-        <S.Container isClose={isClose} isConfirm={isConfirm} onClick={handleStopClick}>
+        <S.Container
+            isClose={isClose}
+            isConfirm={isConfirm}
+            onClick={handleStopClick}
+        >
             <S.Push
                 src="/images/push.svg"
                 onClick={handleClose}
@@ -39,24 +53,33 @@ const SideBar = () => {
                 <S.FuncWrapper isClose={isClose}>
                     <S.Lists>
                         {data.map((item, index) => (
-                            <S.List bgColor={item.bgColor} onClick={() => handleTableClick(index)}>
-                                {item.name === "" ? "이름 없는 테이블" : item.name}
+                            <S.List
+                                bgColor={item.bgColor}
+                                onClick={() => handleTableClick(index)}
+                            >
+                                {item.name === ""
+                                    ? "이름 없는 테이블"
+                                    : item.name}
                             </S.List>
                         ))}
                     </S.Lists>
-                    <S.AddButton onClick={handleAddTable}>테이블 추가</S.AddButton>
+                    <S.AddButton onClick={handleAddTable}>
+                        테이블 추가
+                    </S.AddButton>
                 </S.FuncWrapper>
             ) : (
                 // 지금 뭐 클릭하고 있을 때
                 <S.FuncWrapper isClose={isClose}>
-                    <S.Title>{data[selectTable]?.name }</S.Title>
+                    <S.Title>{data[selectTable]?.name}</S.Title>
                     <S.FuncContainer>
                         <S.Func>
                             배경색 :
                             <S.ChooseColor bgColor={bgColor}>
                                 <S.ColorBox
                                     type="color"
-                                    onChange={(e) => handleChangeBgColor(e.target.value)}
+                                    onChange={(e) =>
+                                        handleChangeBgColor(e.target.value)
+                                    }
                                     value={bgColor}
                                 />
                                 {bgColor}
@@ -65,9 +88,11 @@ const SideBar = () => {
                         <S.Func>
                             이름 :
                             <S.DetailInput
-                            placeholder="이름을 입력해주세요."
-                            value={name}
-                            onChange={(e) => handleChangeName(e.target.value)}
+                                placeholder="이름을 입력해주세요."
+                                value={name}
+                                onChange={(e) =>
+                                    handleChangeName(e.target.value)
+                                }
                             />
                         </S.Func>
                         <S.TimeFunc>
@@ -88,12 +113,19 @@ const SideBar = () => {
                                 type="file"
                                 name="file"
                                 id="file"
-                                onChange={handleChangeFile}
+                                onChange={(e) => {
+                                    const file = e.target.files?.[0];
+                                    if (file) {
+                                        handleChangeBgImg(file);
+                                    }
+                                }}
                                 accept=".jpg, .png,"
                             />
                         </S.Func>
                     </S.FuncContainer>
-                    <S.DeleteButton onClick={handleDeleteTable}>테이블 삭제</S.DeleteButton>
+                    <S.DeleteButton onClick={handleDeleteTable}>
+                        테이블 삭제
+                    </S.DeleteButton>
                 </S.FuncWrapper>
             )}
         </S.Container>
