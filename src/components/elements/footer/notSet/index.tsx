@@ -2,15 +2,10 @@ import React from "react";
 import * as S from "./style";
 import { useRename } from "../../../../store/rename";
 import { useChangeState } from "../../../../store/plannerState";
+import { FooterProps } from "../../../../types/footerProps";
 
-interface FooterProps {
-  footerValue: {
-    isButton: boolean;
-    setIsButton: React.Dispatch<React.SetStateAction<boolean>>;
-  };
-}
 
-const NotSetFooter: React.FC<FooterProps> = ({ footerValue }) => {
+const NotSetFooter = ({ footerValue }:FooterProps) => {
   const { isButton, setIsButton } = footerValue;
   const { name, rename } = useRename();
   const { changeConfirm } = useChangeState();

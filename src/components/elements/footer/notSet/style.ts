@@ -27,7 +27,7 @@ export const InputName = styled.input`
   border-radius: 0.4rem;
   font-size: 1rem;
   width: 100%;
-  height: inherit;
+  height: inherit; // 100%랑 똑같음
   padding-left: 1rem;
   &::placeholder {
     color: #bfbfbf;

@@ -16,14 +16,13 @@ export const Title = styled.div`
   font-size: 1.7rem;
 `;
 
-export const SaveButton = styled(Box)`
-  width: 175px;
-  height: 35px;
-  font-size: 1rem;
+export const Button = styled(Box)`
+  width: 20rem;
+  height: 3rem;
   justify-content: center;
   background-color: #84bbff;
   color: white;
+  border-radius: 0.4rem;
   font-weight: 500;
-  border-radius: 5px;
   cursor: pointer;
 `;

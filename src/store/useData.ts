@@ -6,6 +6,7 @@ export interface DataItem {
   bgColor: string;
   startTime:string;
   endTime:string;
+  bgImg : string;
 }
 
 interface DataForm {

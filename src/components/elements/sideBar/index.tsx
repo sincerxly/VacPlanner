@@ -7,8 +7,8 @@ import { useTableHook } from "../../../hooks/useTableHook";
 
 const SideBar = () => {
     const { isConfirm } = useChangeState();
-    const {handleChangeName, handleTableClick, handleStopClick, handleAddTable, handleClose, handleStartTime, handleEndTime, 
-        setName, startTime, endTime, name, isClose, bgImg, setBgImg, bgColor, setBgColor} = useTableHook();
+    const {handleChangeBgColor, handleDeleteTable, handleChangeName, handleTableClick, handleStopClick, handleAddTable, handleClose, handleStartTime, handleEndTime, 
+        setName, startTime, endTime, name, isClose, bgImg, setBgImg, bgColor, setBgColor,} = useTableHook();
     const { selectTable } = useSelectTable();
     const { data } = useData();
 
@@ -20,7 +20,6 @@ const SideBar = () => {
             setBgImg(uploadFile.name);
         }
     };
-
 
     return (
         <S.Container isClose={isClose} isConfirm={isConfirm} onClick={handleStopClick}>
@@ -40,8 +39,8 @@ const SideBar = () => {
                 <S.FuncWrapper isClose={isClose}>
                     <S.Lists>
                         {data.map((item, index) => (
-                            <S.List onClick={() => handleTableClick(index)}>
-                                {item.name}
+                            <S.List bgColor={item.bgColor} onClick={() => handleTableClick(index)}>
+                                {item.name === "" ? "이름 없는 테이블" : item.name}
                             </S.List>
                         ))}
                     </S.Lists>
@@ -50,24 +49,24 @@ const SideBar = () => {
             ) : (
                 // 지금 뭐 클릭하고 있을 때
                 <S.FuncWrapper isClose={isClose}>
+                    <S.Title>{data[selectTable]?.name }</S.Title>
                     <S.FuncContainer>
                         <S.Func>
                             배경색 :
                             <S.ChooseColor bgColor={bgColor}>
                                 <S.ColorBox
                                     type="color"
-                                    onChange={(e) => setBgColor(e.target.value)}
+                                    onChange={(e) => handleChangeBgColor(e.target.value)}
                                     value={bgColor}
                                 />
                                 {bgColor}
                             </S.ChooseColor>
                         </S.Func>
                         <S.Func>
-                            내용 :
+                            이름 :
                             <S.DetailInput
                             placeholder="이름을 입력해주세요."
                             value={name}
-                            defaultValue={data[selectTable]?.name ?? ""}
                             onChange={(e) => handleChangeName(e.target.value)}
                             />
                         </S.Func>
@@ -94,7 +93,7 @@ const SideBar = () => {
                             />
                         </S.Func>
                     </S.FuncContainer>
-                    <S.DeleteButton>테이블 삭제</S.DeleteButton>
+                    <S.DeleteButton onClick={handleDeleteTable}>테이블 삭제</S.DeleteButton>
                 </S.FuncWrapper>
             )}
         </S.Container>

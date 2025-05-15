@@ -5,6 +5,7 @@ import { useSelectTable } from "../store/useSelectTable";
 
 export const useTableHook = () => {
     const { data, setData } = useData();
+    const { updateData } = useData();
     const addForm = useAddForm();
     const [isClose, setIsClose] = useState<boolean>(false);
     const [startTime, setStartTime] = useState<string>("");
@@ -14,7 +15,8 @@ export const useTableHook = () => {
     const [bgColor, setBgColor] = useState<string>("");
     const { selectTable, setSelectTable } = useSelectTable();
 
-    const handleDeleteTable = () => {};
+    const handleDeleteTable = () => {
+    };
 
     const handleAddTable = () => {
         addForm({
@@ -38,8 +40,6 @@ export const useTableHook = () => {
         setEndTime(e.target.value);
     };
 
-    const { updateData } = useData();
-
     const handleChangeName = (newName: string) => {
         setName(newName);
         if (selectTable !== null) {
@@ -50,15 +50,37 @@ export const useTableHook = () => {
         }
     };
 
+        const handleChangeBgColor = (newBgColor: string) => {
+        setBgColor(newBgColor);
+        if (selectTable !== null) {
+            const tableData = data[selectTable];
+            if (tableData) {
+                updateData(tableData.id, { bgColor: newBgColor });
+            }
+        }
+    };
+
+    const handleChangeBgImg = (newBgImg: string) => {
+        setBgImg(newBgImg);
+        if (selectTable !== null) {
+            const tableData = data[selectTable];
+            if (tableData) {
+                updateData(tableData.id, { bgImg: newBgImg });
+            }
+        }
+    };
+
     const handleStopClick = (e: React.MouseEvent) => {
         e.stopPropagation();
     };
 
     const handleTableClick = (id: number) => {
         setSelectTable(id);
+        setBgColor("#000000");
     };
 
     return {
+        handleDeleteTable,
         handleChangeName,
         handleStopClick,
         handleTableClick,
@@ -75,5 +97,7 @@ export const useTableHook = () => {
         setBgColor,
         setName,
         setBgImg,
+        handleChangeBgColor,
+        handleChangeBgImg
     };
 };

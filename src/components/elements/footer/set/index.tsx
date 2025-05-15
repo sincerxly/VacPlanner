@@ -27,7 +27,7 @@ const SetFooter = () => {
   return (
     <S.Container>
       <S.Title>{name}</S.Title>
-      <S.SaveButton onClick={saveAsImageHandler}>저장하기</S.SaveButton>
+      <S.Button onClick={saveAsImageHandler}>저장하기</S.Button>
     </S.Container>
   );
 };

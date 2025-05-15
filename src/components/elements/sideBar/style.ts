@@ -32,6 +32,11 @@ export const Box = styled.div`
     align-items: center;
 `;
 
+export const Title = styled.div`
+    font-size: 1.4rem;
+    font-weight: 700;
+`
+
 export const Container = styled.div<PushProps>`
     min-height: 40rem;
     height: 40rem;
@@ -78,12 +83,13 @@ export const FuncWrapper = styled(Box)<PushProps>`
     animation: ${(props) => (props.isClose ? fadeOut : fadeIn)} 2.5s;
 `;
 
-export const List = styled(Box)`
+export const List = styled(Box)<ColorProps>`
     width: 100%;
     background-color: white;
     padding: 0.4rem;
     border-radius: 0.4rem;
     font-size: 1.2rem;
+    color: ${(props)=> props.bgColor ? props.bgColor : "black"};
 `;
 
 export const Lists = styled(Box)`
