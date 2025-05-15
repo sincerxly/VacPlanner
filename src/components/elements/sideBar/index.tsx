@@ -1,38 +1,17 @@
-import React, { useState } from "react";
+import React from "react";
 import * as S from "./style";
-import useAddForm from "../tableForm/addForm";
 import { useData } from "../../../store/useData";
 import { useSelectTable } from "../../../store/useSelectTable";
-import { useSetColor } from "../../../store/setColor";
 import { useChangeState } from "../../../store/plannerState";
+import { useTableHook } from "../../../hooks/useTableHook";
 
 const SideBar = () => {
-    const [isClose, setIsClose] = useState<boolean>(false);
-    const [name, setName] = useState<string>("");
     const { isConfirm } = useChangeState();
-    const { bgColor, setBgColor } = useSetColor();
-    const [startTime, setStartTime] = useState<string>("");
-    const [endTime, setEndTime] = useState<string>("");
-    const [bgImg, setBgImg] = useState<string>("");
-    const { selectTable, setSelectTable } = useSelectTable();
+    const {handleChangeName, handleTableClick, handleStopClick, handleAddTable, handleClose, handleStartTime, handleEndTime, 
+        setName, startTime, endTime, name, isClose, bgImg, setBgImg, bgColor, setBgColor} = useTableHook();
+    const { selectTable } = useSelectTable();
     const { data } = useData();
-    const addForm = useAddForm();
 
-    const handleStopClick = (e: React.MouseEvent) => {
-        e.stopPropagation();
-    };
-
-    const handleTableClick = (id: number) => {
-        setSelectTable(id);
-    };
-
-    const handleStartTime = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setStartTime(e.target.value);
-    };
-
-    const handleEndTime = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setEndTime(e.target.value);
-    };
 
     const handleChangeFile = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { files } = e.target;
@@ -42,21 +21,12 @@ const SideBar = () => {
         }
     };
 
-    const handleAddTable = () => {
-        addForm({
-            name: `테이블 ${data.length + 1}`,
-            bgColor,
-            bgImg,
-            startTime,
-            endTime,
-        });
-    };
 
     return (
         <S.Container isClose={isClose} isConfirm={isConfirm} onClick={handleStopClick}>
             <S.Push
                 src="/images/push.svg"
-                onClick={() => setIsClose((prev) => !prev)}
+                onClick={handleClose}
                 isClose={isClose}
             />
             {data.length < 1 ? ( // 데이터가 하나도 없을 때
@@ -75,7 +45,7 @@ const SideBar = () => {
                             </S.List>
                         ))}
                     </S.Lists>
-                    <S.AddButton>테이블 추가</S.AddButton>
+                    <S.AddButton onClick={handleAddTable}>테이블 추가</S.AddButton>
                 </S.FuncWrapper>
             ) : (
                 // 지금 뭐 클릭하고 있을 때
@@ -95,8 +65,10 @@ const SideBar = () => {
                         <S.Func>
                             내용 :
                             <S.DetailInput
-                                placeholder="이름을 입력해주세요."
-                                onChange={(e) => setName(e.target.value)}
+                            placeholder="이름을 입력해주세요."
+                            value={name}
+                            defaultValue={data[selectTable]?.name ?? ""}
+                            onChange={(e) => handleChangeName(e.target.value)}
                             />
                         </S.Func>
                         <S.TimeFunc>
