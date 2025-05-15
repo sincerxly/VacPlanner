@@ -98,8 +98,8 @@ const SideBar = () => {
                         <S.TimeFunc>
                             시간 :
                             <S.TimeWrapper>
-                                <S.TimeInput type="time" />-
-                                <S.TimeInput type="time" />
+                                <S.TimeInput type="time" value={startTime} onChange={(e)=>handleStartTime(e)}/>-
+                                <S.TimeInput type="time" value={endTime} onChange={(e)=>handleEndTime(e)}/>
                             </S.TimeWrapper>
                         </S.TimeFunc>
                         <S.Func>

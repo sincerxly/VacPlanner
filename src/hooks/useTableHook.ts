@@ -15,20 +15,24 @@ export const useTableHook = () => {
     const [bgImg, setBgImg] = useState<string>("");
     const [bgColor, setBgColor] = useState<string>("");
     const { selectTable, setSelectTable } = useSelectTable();
-    const notify = () => toast("테이블을 삭제할 수 없습니다!")
+    const notify = () => toast("테이블을 삭제할 수 없습니다!");
+    const startError = () => toast("종료 시간보다 늦을 수 없습니다!");
+    const endError = () => toast("시작 시간보다 빠를 수 없습니다!");
     const handleDeleteTable = () => {
-        if (data.length < 2){
-            notify()
-        }else{
+        if (data.length < 2) {
+            notify();
+        } else {
             if (selectTable !== null) {
-                const deleted = data.filter((_, index) => index !== selectTable);
+                const deleted = data.filter(
+                    (_, index) => index !== selectTable
+                );
                 (useData.setState as any)({ data: [] });
                 deleted.forEach((item) => {
                     setData(item);
                 });
                 setSelectTable(null);
             }
-     }
+        }
     };
 
     const handleAddTable = () => {
@@ -46,11 +50,33 @@ export const useTableHook = () => {
     };
 
     const handleStartTime = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setStartTime(e.target.value);
+        if (e.target.value < endTime) {
+            startError();
+        } else {
+            const value = e.target.value;
+            setStartTime(value);
+            if (selectTable !== null) {
+                const tableData = data[selectTable];
+                if (tableData) {
+                    updateData(tableData.id, { startTime: value });
+                }
+            }
+        }
     };
 
     const handleEndTime = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setEndTime(e.target.value);
+        if (e.target.value < startTime) {
+            endError();
+        } else {
+            const value = e.target.value;
+            setEndTime(value);
+            if (selectTable !== null) {
+                const tableData = data[selectTable];
+                if (tableData) {
+                    updateData(tableData.id, { endTime: value });
+                }
+            }
+        }
     };
 
     const handleChangeName = (newName: string) => {
@@ -90,7 +116,12 @@ export const useTableHook = () => {
 
     const handleTableClick = (id: number) => {
         setSelectTable(id);
+        setName(data[id].name);
         setBgColor(data[id].bgColor);
+        setStartTime(data[id].startTime);
+        setEndTime(data[id].endTime);
+        console.log(data[id].endTime);
+        console.log(data[id].startTime);
     };
 
     return {

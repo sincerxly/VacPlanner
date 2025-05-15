@@ -9,7 +9,6 @@ import SideBar from "../../components/elements/sideBar";
 import SetFooter from "../../components/elements/footer/set";
 import NotSetFooter from "../../components/elements/footer/notSet";
 import MainTable from "../../components/main/mainTable";
-import { useTableHook } from "../../hooks/useTableHook";
 
 const Home = () => {
     const [isButton, setIsButton] = useState<boolean>(true);
@@ -17,7 +16,6 @@ const Home = () => {
     const { selectTable, setSelectTable } = useSelectTable();
     const { mainContainerRef } = useMainContainer();
     const { data, setData } = useData();
-    const { name, setName, setBgColor } = useTableHook();
 
     useEffect(() => {
         console.log(selectTable);
@@ -34,12 +32,10 @@ const Home = () => {
 
     const handleTableClick = (id: number) => {
         setSelectTable(id);
-        setName("");
     };
 
     const handleContainerClick = () => {
         setSelectTable(null);
-        setName("");
     };
 
     return (
