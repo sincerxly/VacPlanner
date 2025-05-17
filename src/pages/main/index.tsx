@@ -41,7 +41,6 @@ const Home = () => {
 
     return (
         <S.Container onClick={handleContainerClick}>
-            <S.Sign src="/images/sign.svg" />
             <SideBar />
             <S.MainContainer>
                 <Header />

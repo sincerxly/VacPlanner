@@ -41,8 +41,8 @@ export const useTableHook = () => {
             name: `테이블 ${data.length + 1}`,
             bgColor : "transparent",
             bgImg : "",
-            startTime,
-            endTime,
+            startTime : "",
+            endTime : "",
         });
     };
 
@@ -51,7 +51,7 @@ export const useTableHook = () => {
     };
 
     const handleStartTime = (e: React.ChangeEvent<HTMLInputElement>) => {
-        if (e.target.value < endTime) {
+        if (e.target.value > endTime) {
             startError();
             return; 
         } else {
@@ -140,10 +140,10 @@ export const useTableHook = () => {
         name,
         isClose,
         bgColor,
-        setBgColor,
-        setName,
-        setBgImg,
         handleChangeBgColor,
         handleChangeBgImg,
+        setBgColor, 
+        setBgImg,
+        setName
     };
 };

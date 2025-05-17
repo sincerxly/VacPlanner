@@ -17,6 +17,7 @@ export const Table = styled.div<TableProps>`
     display: flex;
     align-items: center;
     justify-content: center;
+    text-align: center;
     font-family: "WandohopeR";
     width: 30rem;
     height: 30rem;
