@@ -28,14 +28,16 @@ const Home = () => {
         console.log(selectTable);
     }, [selectTable]);
 
-    const handleTableClick = (id: number) => { // 안에 클릭할 떄
+    const handleTableClick = (id: number) => {
+        // 안에 클릭할 떄
         setSelectTable(id);
-        setBgColor(data[id].bgColor)
-        setName(data[id].name)
-        setBgImg(data[id].bgImg)
+        setBgColor(data[id].bgColor);
+        setName(data[id].name);
+        setBgImg(data[id].bgImg);
     };
 
-    const handleContainerClick = () => { // 밖에 클릭할 때
+    const handleContainerClick = () => {
+        // 밖에 클릭할 때
         setSelectTable(null);
     };
 

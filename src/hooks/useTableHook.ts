@@ -51,7 +51,7 @@ export const useTableHook = () => {
     };
 
     const handleStartTime = (e: React.ChangeEvent<HTMLInputElement>) => {
-        if (e.target.value > endTime) {
+        if (e.target.value > endTime && endTime !== "") {
             startError();
             return; 
         } else {

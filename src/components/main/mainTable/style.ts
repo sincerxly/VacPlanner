@@ -21,6 +21,7 @@ export const Table = styled.div<TableProps>`
     font-family: "WandohopeR";
     width: 30rem;
     height: 30rem;
+    font-size: 1rem;
     background-color: ${(props) => (!props.bgImg ? props.bgColor : "white")};
     background-image: url(${(props) => (props.bgImg ? props.bgImg : "")});
     background-size: cover;
@@ -28,7 +29,6 @@ export const Table = styled.div<TableProps>`
     background-position: center;
     border-radius: 50%;
     justify-content: center;
-    font-size: 2rem;
     color: white;
     cursor: pointer;
     position: absolute;

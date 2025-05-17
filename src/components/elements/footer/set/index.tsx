@@ -1,28 +1,25 @@
 import React from "react";
 import * as S from "./style";
-import domtoimage from "dom-to-image";
 import { saveAs } from "file-saver";
 import { useRename } from "../../../../store/rename";
 import { useMainContainer } from "../../../../store/useMainContainer";
+import { toBlob } from "html-to-image";
 
 const SetFooter = () => {
   const { name } = useRename();
   const { mainContainerRef } = useMainContainer();
 
-  const saveAsImageHandler = () => {
-    if (mainContainerRef.current) {
-      domtoimage
-        .toBlob(mainContainerRef.current)
-        .then((blob) => {
-          if (blob) {
-            saveAs(blob, `${name}.png`);
-          }
-        })
-        .catch((error) => {
-          console.error("이미지 생성 중 오류 발생:", error);
-        });
-    }
-  };
+
+const saveAsImageHandler = () => {
+  if (mainContainerRef.current) {
+    toBlob(mainContainerRef.current)
+      .then((blob) => {
+        if (blob) saveAs(blob, `${name}.png`);
+      })
+      .catch(console.error);
+  }
+};
+
 
   return (
     <S.Container>
