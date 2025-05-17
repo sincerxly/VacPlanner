@@ -20,5 +20,6 @@ export class Form {
     this.bgImg = bgImg;
     this.startTime = startTime;
     this.endTime = endTime;
+  
   }
 }

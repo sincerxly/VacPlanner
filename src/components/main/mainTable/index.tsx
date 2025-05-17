@@ -20,10 +20,14 @@ const MainTable = ({
                     key={index}
                     id={String(index)}
                     bgColor={item.bgColor}
+                    bgImg={item.bgImg}
+                    startTime={item.startTime}
+                    endTime={item.endTime}
                     ref={mainContainerRef as React.RefObject<HTMLDivElement>}
                     onClick={() => handleTableClick(index)}
                     style={{ zIndex: `${data.length}` }}
                 >
+                    {item.name}
                     {isConfirm ? null : "테이블이 비었어요!"}
                 </S.Table>
             ))}

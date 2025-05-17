@@ -35,7 +35,7 @@ export const Box = styled.div`
 export const Title = styled.div`
     font-size: 1.4rem;
     font-weight: 700;
-`
+`;
 
 export const Container = styled.div<PushProps>`
     min-height: 40rem;
@@ -89,7 +89,7 @@ export const List = styled(Box)<ColorProps>`
     padding: 0.4rem;
     border-radius: 0.4rem;
     font-size: 1.2rem;
-    color: ${(props)=> props.bgColor ? props.bgColor : "black"};
+    color: ${(props) => (props.bgColor !== "transparent" ? props.bgColor : "black")};
 `;
 
 export const Lists = styled(Box)`
@@ -132,7 +132,7 @@ export const DetailInput = styled.input`
 export const ChooseColor = styled(Box)<ColorProps>`
     color: ${(props) => props.bgColor};
     display: flex;
-    gap:1rem;
+    gap: 1rem;
 `;
 
 export const ColorBox = styled.input`
@@ -157,7 +157,8 @@ export const TimeWrapper = styled(Box)`
 
 export const TimeInput = styled.input`
     width: 11rem;
-    height:2rem;
+    font-size: 1rem;
+    height: 2rem;
     border: none;
     outline: none;
     padding-left: 0.3rem;
@@ -181,6 +182,9 @@ export const ImageText = styled.div`
     width: 11rem;
     cursor: pointer;
     color: #00589c;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 `;
 
 export const DeleteButton = styled(Box)`

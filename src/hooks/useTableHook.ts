@@ -18,6 +18,7 @@ export const useTableHook = () => {
     const notify = () => toast("테이블을 삭제할 수 없습니다!");
     const startError = () => toast("종료 시간보다 늦을 수 없습니다!");
     const endError = () => toast("시작 시간보다 빠를 수 없습니다!");
+    
     const handleDeleteTable = () => {
         if (data.length < 2) {
             notify();
@@ -38,8 +39,8 @@ export const useTableHook = () => {
     const handleAddTable = () => {
         addForm({
             name: `테이블 ${data.length + 1}`,
-            bgColor,
-            bgImg,
+            bgColor : "transparent",
+            bgImg : "",
             startTime,
             endTime,
         });
@@ -52,6 +53,7 @@ export const useTableHook = () => {
     const handleStartTime = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.value < endTime) {
             startError();
+            return; 
         } else {
             const value = e.target.value;
             setStartTime(value);
@@ -67,6 +69,7 @@ export const useTableHook = () => {
     const handleEndTime = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.value < startTime) {
             endError();
+            return; 
         } else {
             const value = e.target.value;
             setEndTime(value);
@@ -120,8 +123,6 @@ export const useTableHook = () => {
         setBgColor(data[id].bgColor);
         setStartTime(data[id].startTime);
         setEndTime(data[id].endTime);
-        console.log(data[id].endTime);
-        console.log(data[id].startTime);
     };
 
     return {
