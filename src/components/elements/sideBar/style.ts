@@ -89,7 +89,7 @@ export const List = styled(Box)<ColorProps>`
     padding: 0.4rem;
     border-radius: 0.4rem;
     font-size: 1.2rem;
-    color: ${(props) => (props.bgColor !== "transparent" ? props.bgColor : "black")};
+    color:black;
 `;
 
 export const Lists = styled(Box)`
