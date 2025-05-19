@@ -1,16 +1,16 @@
 {
-  "compilerOptions": {
-    "target": "esnext",
-    "jsx": "react",
-    "module": "commonjs",
-    "moduleResolution": "bundler",
-    "noImplicitAny": true,
-    "strictNullChecks": true,
-    "esModuleInterop": true,
-    "allowImportingTsExtensions": true,
-    "noEmit": true,
-    "allowJs": true,
-     "lib": ["dom", "esnext"],
-     "types": ["node"]
-  }
+    "compilerOptions": {
+        "target": "ES2015",
+        "jsx": "react",
+        "module": "es2015",
+        "moduleResolution": "bundler",
+        "noImplicitAny": true,
+        "strictNullChecks": true,
+        "esModuleInterop": true,
+        "allowImportingTsExtensions": true,
+        "noEmit": true,
+        "allowJs": true,
+        "lib": ["dom", "esnext"],
+        "types": ["node"]
+    }
 }
