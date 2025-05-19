@@ -3,6 +3,7 @@ import Home from "./pages/main";
 import GlobalStyle from "./GlobalStyle";
 import { Bounce, ToastContainer } from "react-toastify";
 
+
 function App() {
     return (
         <>

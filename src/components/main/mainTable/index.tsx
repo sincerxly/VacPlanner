@@ -7,18 +7,15 @@ import { useCutTable } from "../../../hooks/useCutTable";
 const MainTable = ({
     isConfirm,
     data,
-    mainContainerRef,
+    mainTableRef,
     handleTableClick,
 }: MainTableType) => {
     const { bgColor } = useSetColor();
     const { generateClipPath } = useCutTable();
 
     return (
-        <S.Container>
-            <S.Table
-                bgColor={bgColor}
-                ref={mainContainerRef as React.RefObject<HTMLDivElement>}
-            >
+        <S.Container  ref={mainTableRef as React.RefObject<HTMLDivElement>}>
+            <S.Table bgColor={bgColor}>
                 {isConfirm ? null : "테이블이 비었어요!"}
             </S.Table>
             {data.map((item: any, index: number) => {

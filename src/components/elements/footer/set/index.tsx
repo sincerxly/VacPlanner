@@ -1,32 +1,40 @@
 import React from "react";
 import * as S from "./style";
-import { saveAs } from "file-saver";
 import { useRename } from "../../../../store/rename";
-import { useMainContainer } from "../../../../store/useMainContainer";
-import { toBlob } from "html-to-image";
+import html2canvas from "html2canvas";
 
-const SetFooter = () => {
-  const { name } = useRename();
-  const { mainContainerRef } = useMainContainer();
+interface SetFooterProps {
+    mainTableRef: React.RefObject<HTMLDivElement>;
+}
 
+const SetFooter = ({mainTableRef} : SetFooterProps) => {
+    const { name } = useRename();
+    const download = () => {
+        const element = mainTableRef.current;
+        if (!element) return;
 
-const saveAsImageHandler = () => {
-  if (mainContainerRef.current) {
-    toBlob(mainContainerRef.current)
-      .then((blob) => {
-        if (blob) saveAs(blob, `${name}.png`);
-      })
-      .catch(console.error);
-  }
-};
+        html2canvas(element, {
+            useCORS: true,
+            backgroundColor: "#ffffff",
+            scale: 2, 
+        })
+            .then((canvas) => {
+                const link = document.createElement("a");
+                link.download = `${name}.png`;
+                link.href = canvas.toDataURL("image/png");
+                link.click();
+            })
+            .catch((err) => {
+                console.error("이미지 저장 실패:", err);
+            });
+    };
 
-
-  return (
-    <S.Container>
-      <S.Title>{name}</S.Title>
-      <S.Button onClick={saveAsImageHandler}>저장하기</S.Button>
-    </S.Container>
-  );
+    return (
+        <S.Container>
+            <S.Title>{name}</S.Title>
+            <S.Button onClick={download}>저장하기</S.Button>
+        </S.Container>
+    );
 };
 
 export default SetFooter;

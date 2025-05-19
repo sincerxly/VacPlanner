@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import * as S from "./style";
 import { useChangeState } from "../../store/plannerState";
-import { useMainContainer } from "../../store/useMainContainer";
 import { useSelectTable } from "../../store/useSelectTable";
 import { useData } from "../../store/useData";
 import Header from "../../components/elements/header";
@@ -15,9 +14,9 @@ const Home = () => {
     const [isButton, setIsButton] = useState<boolean>(true);
     const { isConfirm } = useChangeState();
     const { selectTable, setSelectTable } = useSelectTable();
-    const { mainContainerRef } = useMainContainer();
-    const { data, setData } = useData();
+    const { data } = useData();
     const { setName, setBgImg, setBgColor } = useTableHook();
+    const mainTableRef = useRef<HTMLDivElement>(null);
 
     const footervalue = {
         isButton,
@@ -49,11 +48,11 @@ const Home = () => {
                 <MainTable
                     isConfirm={isConfirm}
                     data={data}
-                    mainContainerRef={mainContainerRef}
+                    mainTableRef={mainTableRef}
                     handleTableClick={handleTableClick}
                 />
                 {isConfirm ? (
-                    <SetFooter />
+                    <SetFooter mainTableRef={mainTableRef}/>
                 ) : (
                     <NotSetFooter footerValue={footervalue} />
                 )}
